@@ -10,18 +10,22 @@ const processPost = (path, rawContent) => {
   if (!rawContent) return null;
 
   try {
-    // 파일명 추출하여 id로
     const id = path.split('/').pop().replace('.md', '');
     const { attributes, body } = fm(rawContent);
     
+    // 1. 태그 문자열을 배열로 변환
+    const tagList = attributes.tags 
+      ? attributes.tags.split(',').map(t => t.trim()) 
+      : [];
+
     return {
       id,
       title: attributes.title,
       date: attributes.date, 
       imgUrl: attributes.imgUrl,
-      // 태그가 문자열로 들어올 경우 쉼표로 분리하여 배열로
-      tags: attributes.tags ? attributes.tags.split(',').map(t => t.trim()) : [],
-      category: attributes.category,
+      tags: tagList,
+      // 2. 배열의 첫 번째 항목을 카테고리로 지정 (없으면 'log'를 기본값으로)
+      category: tagList.length > 0 ? tagList[0] : "log", 
       content: body,
     };
   } catch (e) {

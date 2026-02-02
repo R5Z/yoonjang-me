@@ -8,21 +8,21 @@ const Posts = ({ posts = [] }) => {
 
   // 정렬 로직
   const sortedPosts = [...posts].sort((a, b) => {
-    if (sortType === "latest") {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateB - dateA;
-    }
-    if (sortType === "oldest") {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateA - dateB;
-    }
-    if (sortType === "category") {
-      return (a.category || "").localeCompare(b.category || "");
-    }
-    return 0;
-  });
+  // 날짜 문자열을 표준 형식(YYYY-MM-DD)으로 변환
+  const dateA = new Date(a.date.replace(/\. /g, '-')).getTime();
+  const dateB = new Date(b.date.replace(/\. /g, '-')).getTime();
+
+  if (sortType === "latest") {
+    return dateB - dateA; // 최신 기준
+  }
+  if (sortType === "oldest") {
+    return dateA - dateB; // 과거 기준
+  }
+  if (sortType === "category") {
+    return (a.category || "").localeCompare(b.category || "");
+  }
+  return 0;
+});
 
   // 페이지네이션
   const indexOfLastPost = currentPage * postsPerPage;
