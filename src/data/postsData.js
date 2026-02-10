@@ -13,7 +13,7 @@ const processPost = (path, rawContent) => {
     const id = path.split('/').pop().replace('.md', '');
     const { attributes, body } = fm(rawContent);
     
-    // 1. 태그 문자열을 배열로 변환
+    // 태그 문자열을 배열로 변환
     const tagList = attributes.tags 
       ? attributes.tags.split(',').map(t => t.trim()) 
       : [];
@@ -24,7 +24,7 @@ const processPost = (path, rawContent) => {
       date: attributes.date, 
       imgUrl: attributes.imgUrl,
       tags: tagList,
-      // 2. 배열의 첫 번째 항목을 카테고리로 지정 (없으면 'log'를 기본값으로)
+      // 배열의 첫 번째 항목을 카테고리로 지정 (없으면 'log'를 기본값으로)
       category: tagList.length > 0 ? tagList[0] : "log", 
       content: body,
     };

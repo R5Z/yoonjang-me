@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { useParams } from 'react-router-dom';
 import { postsData } from '../data/postsData';
+import Comments from '../components/Comments';
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -15,10 +16,10 @@ const PostDetail = () => {
       {/* 상단 메타 정보: 날짜가 먼저, 그 다음 모든 태그 나열 */}
       <div className="post-meta" style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginBottom: '20px' }}>
         
-        {/* 1. 날짜를 가장 먼저 배치 */}
+        {/* 날짜를 가장 먼저 배치 */}
         <span className="date">{post.date}</span>
 
-        {/* 2. 태그 리스트를 그 뒤에 나열 */}
+        {/* 태그 리스트를 그 뒤에 나열 */}
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {post.tags && post.tags.map((tag, index) => (
             <span key={index} className="category">
@@ -38,6 +39,9 @@ const PostDetail = () => {
           {post.content}
         </ReactMarkdown>
       </div>
+
+      {/* 댓글 섹션 추가 */}
+      <Comments postId={postId} />
     </div>
   );
 };
