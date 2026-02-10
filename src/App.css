@@ -402,13 +402,11 @@ a:hover, .post-link:hover {
 
 .comment-input:hover,
 .comment-input:focus {
-  color: var(--green) !important;
   border-color: var(--green) !important;
 }
 
 .comment-textarea:hover,
 .comment-textarea:focus {
-  color: var(--green) !important;
   border-color: var(--green) !important;
 }
 
