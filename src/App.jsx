@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Logo from "./components/Logo";
 import "./App.css";
@@ -26,12 +27,13 @@ function App() {
 
       <div className="content-area">
         <Routes>
-          {/* postsData를 전달하여 Home에서 최신 6개를 보여줍니다. */}
+          {/* postsData Home에서 최신 6개 */}
           <Route path="/" element={<Home posts={postsData} />} />
           <Route path="/posts" element={<Posts posts={postsData} />} />
           <Route path="/post/:postId" element={<PostDetail />} />
           <Route path="/about" element={<About />} />
         </Routes>
+        <Analytics />
       </div>
 
       <footer className="main-footer">
