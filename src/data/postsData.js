@@ -10,10 +10,12 @@ const processPost = (path, rawContent) => {
   if (!rawContent) return null;
 
   try {
-    const id = path.split('/').pop().replace('.md', '');
     const { attributes, body } = fm(rawContent);
     
-    // 태그 문자열을 배열로 변환
+    // slug가 있으면 slug를 id로, 없으면 파일명이 id
+    const fileNameId = path.split('/').pop().replace('.md', '');
+    const id = attributes.slug || fileNameId;
+    
     const tagList = attributes.tags 
       ? attributes.tags.split(',').map(t => t.trim()) 
       : [];
@@ -24,7 +26,6 @@ const processPost = (path, rawContent) => {
       date: attributes.date, 
       imgUrl: attributes.imgUrl,
       tags: tagList,
-      // 배열의 첫 번째 항목을 카테고리로 지정 (없으면 'log'를 기본값으로)
       category: tagList.length > 0 ? tagList[0] : "log", 
       content: body,
     };
@@ -34,14 +35,13 @@ const processPost = (path, rawContent) => {
   }
 };
 
-// 데이터를 날짜 최신순으로 정렬
+
 export const postsData = Object.entries(postFiles)
   .map(([path, content]) => processPost(path, content.default || content))
   .filter(Boolean)
   .sort((a, b) => {
-    const dateA = new Date(a.date.replace(/\. /g, '-'));
-    const dateB = new Date(b.date.replace(/\. /g, '-'));
-    return dateB - dateA; // 내림차순(최신순) 정렬
+    // 날짜 포맷이 '2026. 02. 05' 형태일 경우를 대비한 안전한 정렬 로직
+    const dateA = new Date(a.date.replace(/\. /g, '-').replace(/\.$/, ''));
+    const dateB = new Date(b.date.replace(/\. /g, '-').replace(/\.$/, ''));
+    return dateB - dateA;
   });
-
-console.log("데이터 처리 및 날짜순 정렬 완료:", postsData);
