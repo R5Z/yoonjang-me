@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Posts from "./pages/Posts";
 import About from "./pages/About";
 import PostDetail from "./pages/PostDetail";
+import Landing from "./pages/Landing";
 
 import { postsData } from "./data/postsData";
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/posts" element={<Posts posts={postsData} />} />
           <Route path="/post/:postId" element={<PostDetail />} />
           <Route path="/about" element={<About />} />
+          <Route path="/landing" element={<Landing />} />
         </Routes>
         <Analytics />
       </div>
