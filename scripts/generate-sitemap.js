@@ -1,12 +1,14 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const BASE_URL = 'https://yoonjang.me'; 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// 고정 페이지 (홈, 포스트 목록 등)
+const BASE_URL = 'https://yoonjang.me';
+
 const staticPages = ['', 'posts', 'about'];
 
-// 동적 포스트 페이지 추출
 const postDirectory = path.join(__dirname, '../content/posts');
 const postFiles = fs.readdirSync(postDirectory);
 
@@ -25,12 +27,8 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <url>
       <loc>${BASE_URL}/${page}</loc>
       <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-      <changefreq>${page === '' ? 'daily' : 'weekly'}</changefreq>
-    </url>`)
-    .join('')}
+    </url>`).join('')}
 </urlset>`;
 
-// public 폴더에 sitemap.xml 저장
 fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), sitemap);
-
-console.log('✅ sitemap.xml이 성공적으로 생성되었습니다!');
+console.log('✅ sitemap.xml 생성 완료!');
