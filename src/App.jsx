@@ -9,7 +9,7 @@ import Posts from "./pages/Posts";
 import About from "./pages/About";
 import PostDetail from "./pages/PostDetail";
 
-import { postsData } from "./data/postsData";
+import { postsData, allTags } from "./data/postsData";
 
 function App() {
   console.log("app got data:", postsData);
@@ -30,7 +30,7 @@ function App() {
         <div className="content-area">
           <Routes>
             {/* postsData Home에서 최신 6개 */}
-            <Route path="/" element={<Home posts={postsData} />} />
+            <Route path="/" element={<Home posts={postsData} tags={allTags} />} />
             <Route path="/posts" element={<Posts posts={postsData} />} />
             <Route path="/post/:postId" element={<PostDetail />} />
             <Route path="/about" element={<About />} />

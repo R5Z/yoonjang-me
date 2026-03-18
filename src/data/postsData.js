@@ -45,3 +45,12 @@ export const postsData = Object.entries(postFiles)
     const dateB = new Date(b.date.replace(/\. /g, '-').replace(/\.$/, ''));
     return dateB - dateA;
   });
+
+
+  export const allTags = Array.from(
+    new Set(
+      postsData
+      .flatMap(post => post.tags)
+      .map(tag => tag.toUpperCase())
+    )
+).sort();
