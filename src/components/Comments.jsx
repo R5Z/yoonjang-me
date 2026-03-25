@@ -16,7 +16,7 @@ export default function Comments({ postId }) {
         .from('comments')
         .select('id, post_id, author_name, content, created_at')
         .eq('post_id', postId)
-        .order('created_at', { ascending: false })
+        .order('created_at', { ascending: true })
       
       if (error) {
         console.error('Error fetching comments:', error)
@@ -55,7 +55,7 @@ export default function Comments({ postId }) {
       console.error('Error adding comment:', error)
       alert('댓글 작성 실패')
     } else {
-      setComments(prev => [data[0], ...prev])
+      setComments(prev => [...prev, data[0]])
       setName('')
       setEmail('')
       setContent('')
