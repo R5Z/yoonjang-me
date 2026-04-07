@@ -118,16 +118,23 @@ body {
 
 /* 포스트 행 레이아웃 */
 .post-row {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: flex-start;
-  gap: 20px;
   margin-bottom: 12px;
   position: relative;
-  width: fit-content;
+  width: 100%;
 }
 
-.post-title, .page-title {
+.post-title {
+  font-size: 5rem;
+  font-weight: 300;
+  margin: 0;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  position: relative;
+  z-index: 2;
+  display: inline; /* inline으로 변경 */
+}
+
+.page-title {
   font-size: 5rem;
   font-weight: 300;
   margin: 0;
@@ -139,10 +146,13 @@ body {
 
 /* 포스트 메타 및 태그 */
 .post-meta {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 0.1px;
-  margin-top: 12px;
+  margin-left: 20px;
+  vertical-align: baseline; /* baseline 사용 */
+  position: relative;
+  top: -40px; /* 위로 이동 (숫자 조정 가능) */
 }
 
 .date {
@@ -243,22 +253,28 @@ a:hover, .post-link:hover {
 /* 반응형 - 화면이 좁아지면 메타태그를 가로로 */
 @media (max-width: 768px) {
   :root {
-    --side-padding: 30px; /* 모바일에서는 여백 축소 */
+    --side-padding: 30px;
   }
 
   .post-row {
-    grid-template-columns: 1fr; /* 타이틀이 전체 너비 차지 */
-    gap: 10px;
+    margin-bottom: 40px;
   }
   
   .post-title, .page-title {
-    font-size: 5rem; /* 모바일에서도 동일한 크기 유지 */
+    font-size: 5rem;
+    display: block;
   }
 
   .post-meta {
-    flex-direction: row; /* 세로 → 가로로 변경 */
-    gap: 10px; /* 날짜와 카테고리 사이 간격 */
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
     align-items: center;
+    margin-left: 0;
+    margin-top: 12px;
+    position: static; /* position 초기화 */
+    top: 0; /* top 값 제거 */
+    transform: none; /* transform 제거 */
   }
 
   .ascii-logo {
