@@ -219,6 +219,21 @@ body {
   display: block;
 }
 
+.post-content table {
+  border-collapse: collapse;
+  margin: 30px 0;
+}
+
+.post-content table th,
+.post-content table td {
+  border: 1px solid var(--black);
+  padding: 7px;
+}
+
+.post-content table th {
+  font-weight: bold;
+}
+
 .page-title {
   margin-bottom: 40px;
 }
