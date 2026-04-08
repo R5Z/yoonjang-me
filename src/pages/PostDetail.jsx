@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { useParams, Link } from 'react-router-dom'; // Link 추가
+import remarkGfm from 'remark-gfm';
+import { useParams, Link } from 'react-router-dom';
 import { postsData } from '../data/postsData';
 import Comments from '../components/Comments';
 import { supabase } from '../supabaseClient';
@@ -107,7 +108,10 @@ const PostDetail = () => {
           </h1>
           
           <div className="post-content">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+            <ReactMarkdown 
+              rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]}
+            >
               {post.content}
             </ReactMarkdown>
           </div>
