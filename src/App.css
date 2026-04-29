@@ -653,7 +653,6 @@ a:hover, .post-link:hover {
   height: calc(100vh - var(--header-height) - var(--footer-height));
   margin: 0;
   padding: 0;
-  border: 1px solid var(--black); /* 외곽선 */
 }
 
 .work-item {
