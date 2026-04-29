@@ -545,3 +545,104 @@ a:hover, .post-link:hover {
     gap: 20px;
   }
 }
+
+
+/* ========================================
+   Works Page Styles
+   ======================================== */
+
+/* Works 전용 컨테이너 */
+.works-container {
+  padding: 0;
+  margin: 0;
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+  min-height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Works 그리드 - 데스크탑 3x3 */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+  width: 100vw;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--black); /* 외곽선 */
+}
+
+.work-item {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+  box-sizing: border-box;
+}
+
+/* 마지막 열의 오른쪽 테두리 제거 */
+.work-item:nth-child(3n) {
+  border-right: none;
+}
+
+/* 마지막 행의 아래 테두리 제거 */
+.work-item:nth-child(n+7) {
+  border-bottom: none;
+}
+
+.work-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.work-placeholder:hover {
+  background-color: var(--green);
+}
+
+.coming-soon {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.work-placeholder:hover .coming-soon {
+  opacity: 0.6;
+  color: var(--black);
+}
+
+/* 모바일 반응형 - 1x2 */
+@media (max-width: 768px) {
+  .works-grid {
+    grid-template-columns: 1fr; /* 1열 */
+    grid-template-rows: repeat(2, 1fr); /* 2행 */
+    height: calc(100vh - var(--header-height) - var(--footer-height));
+  }
+  
+  /* 모바일에서는 처음 2개만 보이게 */
+  .work-item:nth-child(n+3) {
+    display: none;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .work-item:nth-child(1) {
+    border-right: none;
+  }
+  
+  .work-item:nth-child(2) {
+    border-bottom: none;
+    border-right: none;
+  }
+}

@@ -7,6 +7,7 @@ import "./App.css";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
+import Works from './pages/Works';
 import About from "./pages/About";
 import PostDetail from "./pages/PostDetail";
 
@@ -25,6 +26,7 @@ function App() {
             <Logo /> 
             <nav className="main-nav">
               <Link to="/posts">posts</Link>
+              <Link to="/works">works</Link>
               <Link to="/about">about</Link>
             </nav>
           </div>
@@ -36,6 +38,7 @@ function App() {
             <Route path="/" element={<Home posts={postsData} tags={allTags} />} />
             <Route path="/posts" element={<Posts posts={postsData} />} />
             <Route path="/post/:postId" element={<PostDetail />} />
+            <Route path="/works" element={<Works />} />
             <Route path="/about" element={<About />} />
           </Routes>
           <Analytics />
