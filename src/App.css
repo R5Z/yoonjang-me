@@ -560,6 +560,87 @@ a:hover, .post-link:hover {
   min-height: 100vh;
   box-sizing: border-box;
   width: 100%;
+  position: relative; /* 중요 */
+  overflow: hidden; /* 원이 밖으로 나가지 않게 */
+}
+
+/* 떠다니는 원 */
+.floating-circle {
+  position: absolute;
+  background-color: var(--black);
+  border-radius: 50%;
+  pointer-events: none; /* 클릭 방해 안 함 */
+  z-index: 10;
+}
+
+/* 첫 번째 원 - 크기와 애니메이션 */
+.circle-1 {
+  width: 95px;
+  height: 95px;
+  top: 20%;
+  left: 10%;
+  animation: float1 20s ease-in-out infinite;
+}
+
+/* 두 번째 원 */
+.circle-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  animation: float2 25s ease-in-out infinite;
+}
+
+/* 세 번째 원 */
+.circle-3 {
+  width: 120px;
+  height: 120px;
+  bottom: 30%;
+  left: 50%;
+  animation: float3 18s ease-in-out infinite;
+}
+
+/* 애니메이션 정의 - 자연스럽게 떠다님 */
+@keyframes float1 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(30vw, 20vh);
+  }
+  50% {
+    transform: translate(10vw, 40vh);
+  }
+  75% {
+    transform: translate(40vw, 10vh);
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(-20vw, -15vh);
+  }
+  66% {
+    transform: translate(-35vw, 20vh);
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(25vw, -25vh);
+  }
+  60% {
+    transform: translate(-15vw, -10vh);
+  }
+  90% {
+    transform: translate(20vw, 15vh);
+  }
 }
 
 /* Works 그리드 - 데스크탑 3x3 */
