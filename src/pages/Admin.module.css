@@ -1,0 +1,134 @@
+/* 떠다니는 원 */
+.floatingCircle {
+  position: fixed;
+  background-color: var(--black);
+  border-radius: 50%;
+  z-index: 0;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.floatingCircle:hover {
+  background-color: var(--green);
+}
+
+.circle1 {
+  width: 95px;
+  height: 95px;
+  top: 20%;
+  left: 10%;
+  animation: float1 20s ease-in-out infinite;
+}
+
+.circle2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  animation: float2 25s ease-in-out infinite;
+}
+
+.circle3 {
+  width: 120px;
+  height: 120px;
+  bottom: 30%;
+  left: 50%;
+  animation: float3 18s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(30vw, 20vh); }
+  50% { transform: translate(10vw, 40vh); }
+  75% { transform: translate(40vw, 10vh); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-20vw, -15vh); }
+  66% { transform: translate(-35vw, 20vh); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0); }
+  30% { transform: translate(25vw, -25vh); }
+  60% { transform: translate(-15vw, -10vh); }
+  90% { transform: translate(20vw, 15vh); }
+}
+
+/* 폼이 원 위에 오도록 */
+.editorSection {
+  position: relative;
+  z-index: 1;
+}
+
+.imgUrlRow {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.imgUrlRow input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--black);
+  background: transparent;
+  font-family: -apple-system, sans-serif;
+  font-size: 1rem;
+  color: var(--black);
+  transition: border-color 0.3s;
+}
+
+.imgUrlRow input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.uploadLabel {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 20px;
+  border: 1px solid var(--black);
+  background: transparent;
+  color: var(--black);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.uploadLabel:hover {
+  border-color: var(--green);
+}
+
+.bodyTextarea {
+  padding: 12px;
+  border: 1px solid var(--black);
+  background: transparent;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  color: var(--black);
+  line-height: 1.6;
+  min-height: 500px;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.bodyTextarea:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.bodyTextarea::placeholder {
+  color: var(--black);
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .bodyTextarea {
+    font-size: 16px; /* iOS 줌 방지 */
+    min-height: 400px;
+  }
+}

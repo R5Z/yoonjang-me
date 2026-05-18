@@ -10,6 +10,8 @@ import Posts from "./pages/Posts";
 import Works from './pages/Works';
 import About from "./pages/About";
 import PostDetail from "./pages/PostDetail";
+import Admin from './pages/Admin';
+
 
 import { postsData, allTags } from "./data/postsData";
 
@@ -40,6 +42,7 @@ function App() {
             <Route path="/post/:postId" element={<PostDetail />} />
             <Route path="/works" element={<Works />} />
             <Route path="/about" element={<About />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
           <Analytics />
         </div>
