@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { put } from '@vercel/blob';
+import { upload } from '@vercel/blob/client';
 import styles from './Admin.module.css';
 
 const PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
@@ -50,9 +50,9 @@ export default function Admin() {
 
     showStatus('이미지 업로드 중...');
     try {
-      const blob = await put(file.name, file, {
+      const blob = await upload(file.name, file, {
         access: 'public',
-        addRandomSuffix: false,
+        handleUploadUrl: '/api/blob-upload',
       });
 
       const textarea = textareaRef.current;
@@ -73,9 +73,9 @@ export default function Admin() {
 
     showStatus('대표 이미지 업로드 중...');
     try {
-      const blob = await put(file.name, file, {
+      const blob = await upload(file.name, file, {
         access: 'public',
-        addRandomSuffix: false,
+        handleUploadUrl: '/api/blob-upload',
       });
       setFm((prev) => ({ ...prev, imgUrl: blob.url }));
       showStatus('대표 이미지 업로드 완료', 'success');
