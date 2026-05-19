@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { upload } from '@vercel/blob/client';
 import styles from './Admin.module.css';
 
@@ -20,13 +20,34 @@ function formatDate() {
   return `${yyyy}. ${mm}. ${dd}`;
 }
 
+// 프론트매터 + 본문 파싱
+function parseMarkdown(content) {
+  const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) return { fm: { ...defaultFrontmatter }, body: content };
+
+  const fmText = match[1];
+  const body = match[2];
+  const fm = { ...defaultFrontmatter };
+
+  fmText.split('\n').forEach((line) => {
+    const m = line.match(/^(\w+):\s*"?(.*?)"?$/);
+    if (m && fm.hasOwnProperty(m[1])) {
+      fm[m[1]] = m[2];
+    }
+  });
+
+  return { fm, body };
+}
+
 export default function Admin() {
   const [authed, setAuthed] = useState(false);
   const [pw, setPw] = useState('');
   const [fm, setFm] = useState({ ...defaultFrontmatter, date: formatDate() });
   const [body, setBody] = useState('');
   const [status, setStatus] = useState('');
-  const [statusType, setStatusType] = useState(''); // '', 'success', 'error'
+  const [statusType, setStatusType] = useState('');
+  const [posts, setPosts] = useState([]);
+  const [originalSlug, setOriginalSlug] = useState(''); // 슬러그 변경 감지용
   const textareaRef = useRef(null);
 
   function showStatus(msg, type = '') {
@@ -38,9 +59,64 @@ export default function Admin() {
     if (pw === PASSWORD) {
       setAuthed(true);
       showStatus('');
+      loadPosts();
     } else {
       showStatus('비밀번호가 틀렸어요', 'error');
     }
+  }
+
+  async function loadPosts() {
+    try {
+      const res = await fetch('/api/github-list');
+      const data = await res.json();
+      if (data.files) setPosts(data.files);
+    } catch (err) {
+      showStatus('목록 로드 실패: ' + err.message, 'error');
+    }
+  }
+
+  async function handleLoadPost(filename) {
+    try {
+      const res = await fetch(`/api/github-get?filename=${filename}`);
+      const data = await res.json();
+      if (!data.content) return showStatus('로드 실패', 'error');
+
+      const { fm: loadedFm, body: loadedBody } = parseMarkdown(data.content);
+      setFm(loadedFm);
+      setBody(loadedBody);
+      setOriginalSlug(loadedFm.slug);
+      showStatus(`불러옴: ${filename}`, 'success');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      showStatus('로드 실패: ' + err.message, 'error');
+    }
+  }
+
+  async function handleDelete(filename) {
+    if (!confirm(`정말 삭제할까요?\n${filename}`)) return;
+
+    try {
+      const res = await fetch('/api/github-delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        return showStatus('삭제 실패: ' + err.error, 'error');
+      }
+      showStatus(`삭제됨: ${filename}`, 'success');
+      loadPosts();
+    } catch (err) {
+      showStatus('삭제 실패: ' + err.message, 'error');
+    }
+  }
+
+  function handleNew() {
+    setFm({ ...defaultFrontmatter, date: formatDate() });
+    setBody('');
+    setOriginalSlug('');
+    showStatus('새 글 작성 모드', '');
   }
 
   async function handleDrop(e) {
@@ -105,19 +181,30 @@ imgUrl: "${fm.imgUrl}"
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ filename, content }),
       });
-
       if (!res.ok) {
         const err = await res.json();
         return showStatus('저장 실패: ' + err.error, 'error');
       }
 
-      showStatus('저장 완료! GitHub에 커밋됐어요', 'success');
+      // 슬러그 변경 시 기존 파일 삭제
+      if (originalSlug && originalSlug !== fm.slug) {
+        const oldFilename = `${originalSlug}.md`;
+        await fetch('/api/github-delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ filename: oldFilename }),
+        });
+        showStatus(`저장 완료 (${oldFilename} → ${filename})`, 'success');
+      } else {
+        showStatus('저장 완료!', 'success');
+      }
+      setOriginalSlug(fm.slug);
+      loadPosts();
     } catch (err) {
       showStatus('저장 실패: ' + err.message, 'error');
     }
   }
 
-  // 로그인 화면
   if (!authed) {
     return (
       <div className="container">
@@ -125,7 +212,7 @@ imgUrl: "${fm.imgUrl}"
         <div className={`${styles.floatingCircle} ${styles.circle2}`} />
         <div className={`${styles.floatingCircle} ${styles.circle3}`} />
         <h1 className="page-title">Admin</h1>
-        <div className="contact-form-section">
+        <div className="contact-form-section" style={{ position: 'relative', zIndex: 1 }}>
           <div className="contact-form">
             <div className="form-group">
               <label htmlFor="pw">Password</label>
@@ -141,26 +228,32 @@ imgUrl: "${fm.imgUrl}"
             <button className="submit-button" onClick={handleLogin}>
               Enter
             </button>
-            {status && (
-              <div className={`status-message ${statusType}`}>{status}</div>
-            )}
+            {status && <div className={`status-message ${statusType}`}>{status}</div>}
           </div>
         </div>
       </div>
     );
   }
 
-  // 에디터 화면
   return (
     <div className="container">
-        <div className={`${styles.floatingCircle} ${styles.circle1}`} />
-        <div className={`${styles.floatingCircle} ${styles.circle2}`} />
-        <div className={`${styles.floatingCircle} ${styles.circle3}`} />
+      <div className={`${styles.floatingCircle} ${styles.circle1}`} />
+      <div className={`${styles.floatingCircle} ${styles.circle2}`} />
+      <div className={`${styles.floatingCircle} ${styles.circle3}`} />
+
       <h1 className="page-title">Admin</h1>
 
       <div className={styles.editorSection}>
         <div className="contact-form">
-          {/* 프론트매터 */}
+          <button
+            type="button"
+            className="submit-button"
+            onClick={handleNew}
+            style={{ alignSelf: 'flex-start' }}
+          >
+            + New Post
+          </button>
+
           {['title', 'date', 'tags', 'slug'].map((key) => (
             <div className="form-group" key={key}>
               <label htmlFor={key}>{key}</label>
@@ -168,14 +261,11 @@ imgUrl: "${fm.imgUrl}"
                 id={key}
                 type="text"
                 value={fm[key]}
-                onChange={(e) =>
-                  setFm((prev) => ({ ...prev, [key]: e.target.value }))
-                }
+                onChange={(e) => setFm((prev) => ({ ...prev, [key]: e.target.value }))}
               />
             </div>
           ))}
 
-          {/* imgUrl */}
           <div className="form-group">
             <label htmlFor="imgUrl">imgUrl</label>
             <div className={styles.imgUrlRow}>
@@ -183,23 +273,15 @@ imgUrl: "${fm.imgUrl}"
                 id="imgUrl"
                 type="text"
                 value={fm.imgUrl}
-                onChange={(e) =>
-                  setFm((prev) => ({ ...prev, imgUrl: e.target.value }))
-                }
+                onChange={(e) => setFm((prev) => ({ ...prev, imgUrl: e.target.value }))}
               />
               <label className={styles.uploadLabel}>
                 Upload
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImgUrlUpload}
-                  style={{ display: 'none' }}
-                />
+                <input type="file" accept="image/*" onChange={handleImgUrlUpload} style={{ display: 'none' }} />
               </label>
             </div>
           </div>
 
-          {/* 본문 */}
           <div className="form-group">
             <label htmlFor="body">body</label>
             <textarea
@@ -218,9 +300,24 @@ imgUrl: "${fm.imgUrl}"
             Save (Commit to GitHub)
           </button>
 
-          {status && (
-            <div className={`status-message ${statusType}`}>{status}</div>
-          )}
+          {status && <div className={`status-message ${statusType}`}>{status}</div>}
+        </div>
+
+        {/* 포스트 목록 */}
+        <div className={styles.postsList}>
+          <h2 className={styles.sectionTitle}>Posts</h2>
+          {posts.length === 0 && <p>목록을 불러오는 중...</p>}
+          <ul className={styles.postUl}>
+            {posts.map((post) => (
+              <li key={post.name} className={styles.postLi}>
+                <span className={styles.postName}>{post.name}</span>
+                <div className={styles.postActions}>
+                  <button onClick={() => handleLoadPost(post.name)}>Edit</button>
+                  <button onClick={() => handleDelete(post.name)}>Delete</button>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

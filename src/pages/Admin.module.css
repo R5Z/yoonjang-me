@@ -132,3 +132,60 @@
     min-height: 400px;
   }
 }
+
+.postsList {
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: var(--black);
+}
+
+.postUl {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postLi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--black);
+  background: transparent;
+}
+
+.postName {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  color: var(--black);
+}
+
+.postActions {
+  display: flex;
+  gap: 8px;
+}
+
+.postActions button {
+  padding: 4px 12px;
+  border: 1px solid var(--black);
+  background: transparent;
+  color: var(--black);
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 0;
+  transition: border-color 0.3s;
+}
+
+.postActions button:hover {
+  border-color: var(--green);
+}
