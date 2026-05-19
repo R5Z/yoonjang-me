@@ -189,3 +189,9 @@
 .postActions button:hover {
   border-color: var(--green);
 }
+
+.bodyLabelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

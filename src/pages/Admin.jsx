@@ -143,6 +143,32 @@ export default function Admin() {
     }
   }
 
+  async function handleBodyImageUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  showStatus('이미지 업로드 중...');
+  try {
+    const blob = await upload(file.name, file, {
+      access: 'public',
+      handleUploadUrl: '/api/blob-upload',
+    });
+
+    const textarea = textareaRef.current;
+    const start = textarea.selectionStart;
+    const before = body.slice(0, start);
+    const after = body.slice(start);
+    const tag = `<img src="${blob.url}" width="500" />`;
+    setBody(before + tag + after);
+    showStatus('이미지 업로드 완료', 'success');
+  } catch (err) {
+    showStatus('이미지 업로드 실패: ' + err.message, 'error');
+  }
+
+  // 같은 파일 재선택 가능하도록 초기화
+  e.target.value = '';
+}
+
   async function handleImgUrlUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -283,16 +309,27 @@ imgUrl: "${fm.imgUrl}"
           </div>
 
           <div className="form-group">
-            <label htmlFor="body">body</label>
+            <div className={styles.bodyLabelRow}>
+                <label htmlFor="body">body</label>
+                <label className={styles.uploadLabel}>
+                Insert Image
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleBodyImageUpload}
+                    style={{ display: 'none' }}
+                />
+                </label>
+            </div>
             <textarea
-              id="body"
-              ref={textareaRef}
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={handleDrop}
-              placeholder="본문을 작성하세요. 이미지는 여기에 드래그앤드롭."
-              className={styles.bodyTextarea}
+                id="body"
+                ref={textareaRef}
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={handleDrop}
+                placeholder="본문을 작성하세요. 이미지는 드래그앤드롭 또는 위 버튼."
+                className={styles.bodyTextarea}
             />
           </div>
 
