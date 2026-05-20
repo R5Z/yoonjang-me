@@ -849,3 +849,11 @@ a:hover, .post-link:hover {
     font-size: 0.85rem;
   }
 }
+
+/* 방명록 폼 - 모바일에서는 세로로 */
+/* 모바일에서는 전체 너비 */
+@media (max-width: 768px) {
+  .guestbook-container {
+    max-width: 100%;
+  }
+}
