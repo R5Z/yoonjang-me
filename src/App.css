@@ -710,28 +710,29 @@ a:hover, .post-link:hover {
 }
 
 /* 모바일 반응형 - 1x2 */
+/* 모바일 - 위아래 2칸만 */
 @media (max-width: 768px) {
   .works-grid {
-    grid-template-columns: 1fr; /* 1열 */
-    grid-template-rows: repeat(2, 1fr); /* 2행 */
+    grid-template-columns: 1fr !important;        /* 1열 강제 */
+    grid-template-rows: repeat(2, 1fr) !important; /* 2행 강제 */
     height: calc(100vh - var(--header-height) - var(--footer-height));
   }
-  
-  /* 모바일에서는 처음 2개만 보이게 */
+
+  /* 3번째 칸부터 숨김 */
   .work-item:nth-child(n+3) {
     display: none;
   }
-}
 
-/* 모바일 */
-@media (max-width: 768px) {
+  /* 1번 칸: 아래 선만 */
   .work-item:nth-child(1) {
-    border-right: none;
+    border-right: none !important;
+    border-bottom: 1px solid var(--black) !important;
   }
-  
+
+  /* 2번 칸: 선 없음 */
   .work-item:nth-child(2) {
-    border-bottom: none;
-    border-right: none;
+    border-right: none !important;
+    border-bottom: none !important;
   }
 }
 
