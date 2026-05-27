@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "백수 혹은 프리랜서 또는 (깜빡이는 커서)"
 date: "2026. 05. 27"
 tags: "blog"
 slug: "freelancing"
