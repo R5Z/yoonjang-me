@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import RouletteModal from "../components/RouletteModal";
+import { useRouletteAutoOpen } from "../hooks/useRouletteAutoOpen";
 
 const Home = ({ posts = [], tags = [] }) => {
+  const navigate = useNavigate();
+
+  // 룰렛 자동 오픈 (첫 방문 / 3시간 후 재방문)
+  const [isRouletteOpen, setRouletteOpen] = useRouletteAutoOpen();
+
   // 선택된 태그 상태 관리 (null이면 전체 보기)
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -17,7 +24,7 @@ const Home = ({ posts = [], tags = [] }) => {
 
   // 필터링 로직: 선택된 태그가 있다면 해당 태그를 포함한 포스트만 추출
   const filteredPosts = selectedTag
-    ? posts.filter((post) => 
+    ? posts.filter((post) =>
         post.tags.map(t => t.toUpperCase()).includes(selectedTag.toUpperCase())
       )
     : posts.slice(0, 6); // 선택된 태그가 없으면 최신 6개 유지
@@ -45,10 +52,10 @@ const Home = ({ posts = [], tags = [] }) => {
       </section>
 
       {/* 태그 클라우드 */}
-      <section 
-        className="all-tags-section" 
-        style={{ 
-          marginTop: '40px', 
+      <section
+        className="all-tags-section"
+        style={{
+          marginTop: '40px',
           paddingTop: '40px'
         }}
       >
@@ -56,13 +63,13 @@ const Home = ({ posts = [], tags = [] }) => {
           {selectedTag ? (
             /* 선택된 태그 + 끄기 버튼 조합 */
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span 
-                className="category" 
+              <span
+                className="category"
                 style={{ background: '#0000ff', color: '#fff', cursor: 'default' }}
               >
                 {selectedTag}
               </span>
-              <button 
+              <button
                 onClick={clearFilter}
                 style={{
                   background: 'none',
@@ -81,9 +88,9 @@ const Home = ({ posts = [], tags = [] }) => {
           ) : (
             /* 전체 태그 나열 */
             tags.map((tag, index) => (
-              <span 
-                key={index} 
-                className="category" 
+              <span
+                key={index}
+                className="category"
                 style={{ cursor: 'pointer' }}
                 onClick={() => handleTagClick(tag)}
               >
@@ -93,6 +100,17 @@ const Home = ({ posts = [], tags = [] }) => {
           )}
         </div>
       </section>
+
+      {/* 키워드 룰렛 모달 — 전체 포스트 대상 */}
+      <RouletteModal
+        posts={posts}
+        isOpen={isRouletteOpen}
+        onClose={() => setRouletteOpen(false)}
+        onSelect={(post) => {
+          setRouletteOpen(false);
+          navigate(`/post/${post.id}`);
+        }}
+      />
     </div>
   );
 };
