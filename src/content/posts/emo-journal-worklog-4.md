@@ -11,7 +11,7 @@ imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/og.png"
 아래 이미지 클릭하시면 됩니다. 그냥 어디에도 하기 어려운 말 같은 거 쓰면 좋아요. 근데 그런 말 나만 있는 것 같기도 해...  
 
 <br/>
-<a href="https://vhue-mu.vercel.app/">
+<a href="https://vhue-mu.vercel.app/" target="_blank">
 <img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/og.png" width="300" />
 </a>
 <br/>
