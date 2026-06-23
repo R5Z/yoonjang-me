@@ -1,0 +1,39 @@
+---
+title: "일"
+date: "2026. 02. 05"
+tags: "blog, studio"
+slug: "currently-work"
+imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog5.png"
+---
+
+
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog1.png" width="500" />
+
+<br>
+<br>
+
+일이 하나도 없다가 지난 초겨울 어느 술자리에서 기억도 못 한 채로 “돈을 못 버는 게 고민이다”라고 말한 뒤로 일을 조금씩 하고 있다.  
+하나는 누가 찾아준 일 하나는 내가 알아서 하는 일.
+몇 년 전 프로젝트 이후로 이렇다 할 작업도 누가 찾아주는 일도 없었는데 갑자기 혈이 뚫린 것처럼 일을 한다.  
+솔직히 돈을 벌고 싶다고 했지만, 어느 순간 오로지 “해야 해서” 하는 스케줄로만 채워진 하루하루가 버거웠던 게 가장 컸다. 공부도 작업도 이거라도 해야지 싶어서 하는 게 넘 싫었어.  
+왜 간직하고 있는진 아직도 잘 모르겠지만 내가 겪은 부당한 일들은 내 메일함에 오래도록 남아있다. 야 좀 넘어가, 다 지웠어야 했나? 이젠 그런 고민도 안 해도 되고 여전히 메일함엔 좋은 소식 나쁜 소식 다 있다.  
+요즘엔 생각나면 그냥 한다. 하고 싶으면 한다. 내가 이런 말을 하게 될 줄 몰랐다. 주체적으로 살아 앙?
+
+<br>
+<br>
+
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog2.png" width="500" />
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog3.png" width="500" />
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog4.png" width="500" />
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog5.png" width="500" />
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog6.png" width="500" />
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog7.png" width="500" />
+<br>
+<br>
+<br>
+
+
+
+
+
+

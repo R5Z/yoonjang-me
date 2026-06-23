@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const BASE_URL = 'https://yoonjang.me'; 
 
-const postDirectory = path.resolve(__dirname, '../src/content/posts');
+const postDirectory = path.resolve(__dirname, '../content/posts');
 const publicDirectory = path.resolve(__dirname, '../public');
 
 const staticPages = ['', 'posts', 'about'];
