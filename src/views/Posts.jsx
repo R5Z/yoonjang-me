@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Posts = ({ posts = [] }) => {
   const [sortType, setSortType] = useState("latest");
@@ -53,7 +53,7 @@ const Posts = ({ posts = [] }) => {
       {/* 포스트 리스트 */}
       <div className="posts-list">
         {currentPosts.map((post) => (
-          <Link to={`/post/${post.id}`} key={post.id} className="post-link">
+          <Link href={`/post/${post.id}`} key={post.id} className="post-link">
             <article className="post-row">
               <h1 className="post-title">{post.title}</h1>
               <img src={post.imgUrl} alt="" className="post-preview-img" />

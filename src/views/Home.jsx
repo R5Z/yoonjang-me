@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import RouletteModal from "../components/RouletteModal";
 import { useRouletteAutoOpen } from "../hooks/useRouletteAutoOpen";
 
 const Home = ({ posts = [], tags = [] }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   // 룰렛 자동 오픈 (첫 방문 / 3시간 후 재방문)
   const [isRouletteOpen, setRouletteOpen] = useRouletteAutoOpen();
@@ -35,7 +36,7 @@ const Home = ({ posts = [], tags = [] }) => {
       <section className="post-list">
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => (
-            <Link to={`/post/${post.id}`} key={post.id} className="post-link">
+            <Link href={`/post/${post.id}`} key={post.id} className="post-link">
               <article className="post-row">
                 <h1 className="post-title">{post.title}</h1>
                 {post.imgUrl && <img src={post.imgUrl} alt="" className="post-preview-img" />}
@@ -108,7 +109,7 @@ const Home = ({ posts = [], tags = [] }) => {
         onClose={() => setRouletteOpen(false)}
         onSelect={(post) => {
           setRouletteOpen(false);
-          navigate(`/post/${post.id}`);
+          router.push(`/post/${post.id}`);
         }}
       />
     </div>
