@@ -3,9 +3,9 @@ export default async function handler(req, res) {
   if (!filename) return res.status(400).json({ error: 'filename required' });
 
   const token = process.env.GITHUB_TOKEN;
-  const owner = process.env.VITE_GITHUB_OWNER;
-  const repo = process.env.VITE_GITHUB_REPO;
-  const path = `src/content/posts/${filename}`;
+  const owner = process.env.GITHUB_OWNER;
+  const repo = process.env.GITHUB_REPO;
+  const path = `content/posts/${filename}`;
 
   try {
     const r = await fetch(

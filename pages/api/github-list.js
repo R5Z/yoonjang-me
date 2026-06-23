@@ -1,11 +1,11 @@
 export default async function handler(req, res) {
   const token = process.env.GITHUB_TOKEN;
-  const owner = process.env.VITE_GITHUB_OWNER;
-  const repo = process.env.VITE_GITHUB_REPO;
+  const owner = process.env.GITHUB_OWNER;
+  const repo = process.env.GITHUB_REPO;
 
   try {
     const r = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/contents/src/content/posts`,
+      `https://api.github.com/repos/${owner}/${repo}/contents/content/posts`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
