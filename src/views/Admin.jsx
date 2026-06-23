@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { upload } from '@vercel/blob/client';
 import styles from './Admin.module.css';
 
-const PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
+const PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
 const defaultFrontmatter = {
   title: '',
