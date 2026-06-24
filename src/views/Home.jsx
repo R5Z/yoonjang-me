@@ -1,15 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import RouletteModal from "../components/RouletteModal";
-import { useRouletteAutoOpen } from "../hooks/useRouletteAutoOpen";
+import RouletteFloating from "../components/RouletteFloating";
 
 const Home = ({ posts = [], tags = [] }) => {
-  const router = useRouter();
-
-  // 룰렛 자동 오픈 (첫 방문 / 3시간 후 재방문)
-  const [isRouletteOpen, setRouletteOpen] = useRouletteAutoOpen();
-
   // 선택된 태그 상태 관리 (null이면 전체 보기)
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -102,16 +95,8 @@ const Home = ({ posts = [], tags = [] }) => {
         </div>
       </section>
 
-      {/* 키워드 룰렛 모달 — 전체 포스트 대상 */}
-      <RouletteModal
-        posts={posts}
-        isOpen={isRouletteOpen}
-        onClose={() => setRouletteOpen(false)}
-        onSelect={(post) => {
-          setRouletteOpen(false);
-          router.push(`/post/${post.id}`);
-        }}
-      />
+      {/* 키워드 룰렛 — 우측 하단 플로팅 버튼 */}
+      <RouletteFloating posts={posts} />
     </div>
   );
 };

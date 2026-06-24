@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
+import RouletteFloating from "../components/RouletteFloating";
+
 
 const Posts = ({ posts = [] }) => {
   const [sortType, setSortType] = useState("latest");
@@ -92,6 +94,7 @@ const Posts = ({ posts = [] }) => {
           No posts found.
         </p>
       )}
+      <RouletteFloating posts={posts} />
     </div>
   );
 };
