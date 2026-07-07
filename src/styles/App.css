@@ -187,6 +187,16 @@ body {
   content: "#";
 }
 
+.comment-dot {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.2em;
+  color: #B5B3A6;
+  vertical-align: middle;
+  position: relative; 
+  top: -8px;
+}
+
 /* 이미지 프리뷰 */
 .post-preview-img {
   position: absolute;

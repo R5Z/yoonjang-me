@@ -31,7 +31,10 @@ const Home = ({ posts = [], tags = [] }) => {
           filteredPosts.map((post) => (
             <Link href={`/post/${post.id}`} key={post.id} className="post-link">
               <article className="post-row">
-                <h1 className="post-title">{post.title}</h1>
+                <h1 className="post-title">
+                  {post.title}
+                  {post.hasComments && <span className="comment-dot" aria-label="댓글 있음">●</span>}
+                  </h1>
                 {post.imgUrl && <img src={post.imgUrl} alt="" className="post-preview-img" />}
                 <div className="post-meta">
                   <span className="date">{post.date}</span>
