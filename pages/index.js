@@ -8,6 +8,6 @@ export default function HomePage({ posts, tags }) {
 export async function getStaticProps() {
   return {
     props: { posts: await getAllPostsWithComments(), tags: getAllTags() },
-    revalidate: 1800, // 30min
+    revalidate: 300, // 5min
   };
 }
