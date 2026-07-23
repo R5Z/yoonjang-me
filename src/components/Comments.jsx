@@ -1,6 +1,26 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../supabaseClient'
 
+function linkify(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g
+  return text.split(urlRegex).map((part, i) =>
+    i % 2 === 1 ? (
+      
+      <a
+        key={i}
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: '#0000ff', textDecoration: 'underline' }}
+      > 
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  )
+}
+
 export default function Comments({ postId }) {
   const [comments, setComments] = useState([])
   const [loading, setLoading] = useState(true)
@@ -219,7 +239,7 @@ export default function Comments({ postId }) {
                     })}
                 </span>
                 </div>
-                <p style={commentContentStyle}>{comment.content}</p>
+                <p style={commentContentStyle}>{linkify(comment.content)}</p>
             </div>
             ))}
         </div>
