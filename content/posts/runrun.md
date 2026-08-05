@@ -3,7 +3,7 @@ title: "하기 싫어도 해야 하는 일 중에"
 date: "2026. 08. 05"
 tags: "running, blog"
 slug: "runrun"
-imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_3513.jpg"
+imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_3513.jpeg"
 ---
 <br/>
 그런 게 있나 싶긴 하지만<br/>
@@ -21,7 +21,7 @@ imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_3513.jpg"
 저녁인데도 기온은 33도. 습도는 근래 들어 조금 낮은 편이긴 했지만 그래도 굉장히 습한 날씨였다. 사실 운동복으로 갈아입으며 이미 땀이 나서 바깥을 달리겠다는 마음을 먹는 게 쉬운 건 아니었다. 그치만 최근의 부정적인 굴레를 끊고 싶었음. 몸을 많이 쓰는 작업을 함, 힘들어서 운동 안 하고 쉼, 몸이 더 쳐짐, 좋은 생각 안 남의 반복. 하루하루가 너무 지겹고 내일도 앞으로도 이럴 거라는 생각에 압도당하기. 멍청아, 카이보일이도 그런 생각은 안 한다고… 아무튼.<br/>
 한강 코스를 택했고 몸을 푸는데도 공기 중의 습도가 온몸을 끌어 잡아 당기는 것 같았다. 그치만 달리자마자 금방 알았다. 나는 지금보다 더 덥고 습한 밤에도 기쁘고 달렸었고, 그리고 끝나면 분명히 지금보다 맑아진 내가 될 거라고. 돌아와 찬물로 샤워하고 나왔을 때 쯤엔 다시 뭔 생각을 했다고? 빨리 잠이나 자자. 하는 개운한 내가 되어 있었다. 개운한 나. 개운한 달리기. 계훈아 개운하니. 그냥 달리자. 그냥 하자. 그냥 살자.<br/><br/><br/>
 
-<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_3513.jpg" width="500" />
+<img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_3513.jpeg" width="500" />
 <br/>
 <img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_5957.jpg" width="500" />
 <br/>
