@@ -2,6 +2,8 @@
 title: "lexicon 마련하기 - 감정 일기 작업기 1"
 date: "2026. 03. 17"
 tags: "dev, lexicon, app, project"
+series: "감정일기-작업기"
+seriesOrder: "2"
 slug: "emo-journal-worklog-1"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260317_post0.jpeg"
 ---

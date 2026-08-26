@@ -2,6 +2,8 @@
 title: "웹앱 배포 - 감정 일기 작업기 4"
 date: "2026. 06. 18"
 tags: "dev, pwa, app"
+series: "감정일기-작업기"
+seriesOrder: "5"
 slug: "emo-journal-worklog-4"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/og.png"
 ---

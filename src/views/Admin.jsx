@@ -8,6 +8,8 @@ const defaultFrontmatter = {
   title: '',
   date: '',
   tags: '',
+  series: '',
+  seriesOrder: '',
   slug: '',
   imgUrl: '',
 };
@@ -191,13 +193,15 @@ export default function Admin() {
 
     const filename = `${fm.slug}.md`;
     const frontmatter = `---
-title: "${fm.title}"
-date: "${fm.date}"
-tags: "${fm.tags}"
-slug: "${fm.slug}"
-imgUrl: "${fm.imgUrl}"
----
-`;
+                        title: "${fm.title}"
+                        date: "${fm.date}"
+                        tags: "${fm.tags}"
+                        slug: "${fm.slug}"
+                        imgUrl: "${fm.imgUrl}"
+                        series: "${fm.series}"
+                        seriesOrder: "${fm.seriesOrder}"
+                        ---
+                        `;
     const content = frontmatter + body;
 
     showStatus('저장 중...');
@@ -280,7 +284,7 @@ imgUrl: "${fm.imgUrl}"
             + New Post
           </button>
 
-          {['title', 'date', 'tags', 'slug'].map((key) => (
+          {['title', 'date', 'tags','series', 'seriesOrder', 'slug'].map((key) => (
             <div className="form-group" key={key}>
               <label htmlFor={key}>{key}</label>
               <input

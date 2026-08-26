@@ -10,19 +10,21 @@ const Posts = ({ posts = [] }) => {
 
   // 정렬 로직
   const sortedPosts = [...posts].sort((a, b) => {
-  // 날짜 문자열을 표준 형식(YYYY-MM-DD)으로 변환
   const dateA = new Date(a.date.replace(/\. /g, '-')).getTime();
   const dateB = new Date(b.date.replace(/\. /g, '-')).getTime();
 
-  if (sortType === "latest") {
-    return dateB - dateA; // 최신 기준
+  if (sortType === "series") {
+    if (a.series && b.series) {
+      if (a.series !== b.series) return a.series.localeCompare(b.series);
+      return a.seriesOrder - b.seriesOrder;
+    }
+    if (a.series && !b.series) return -1;
+    if (!a.series && b.series) return 1;
+    return dateB - dateA;
   }
-  if (sortType === "oldest") {
-    return dateA - dateB; // 과거 기준
-  }
-  if (sortType === "category") {
-    return (a.category || "").localeCompare(b.category || "");
-  }
+  if (sortType === "latest") return dateB - dateA;
+  if (sortType === "oldest") return dateA - dateB;
+  if (sortType === "category") return (a.category || "").localeCompare(b.category || "");
   return 0;
 });
 
@@ -41,33 +43,61 @@ const Posts = ({ posts = [] }) => {
     <div className="container">
       {/* 정렬 컨트롤 - 첫 포스트와 같은 높이 */}
       <div className="posts-header">
-        <select 
-          value={sortType}
-          onChange={handleSortChange}
-          className="sort-select"
-        >
-          <option value="latest">Latest</option>
-          <option value="oldest">Oldest</option>
-          <option value="category">By Tag</option>
-        </select>
+        <div style={{ display: 'flex', gap: '12px', fontStyle: 'italic', fontSize: '14px', fontFamily: 'Georgia, "PT Serif", serif' }}>
+          {[
+            { key: 'series', label: 'Series' },
+            { key: 'latest', label: 'Latest' },
+            { key: 'oldest', label: 'Oldest' },
+            { key: 'category', label: 'By Tag' },
+          ].map(opt => (
+            <span
+              key={opt.key}
+              onClick={() => { setSortType(opt.key); setCurrentPage(1); }}
+              style={{
+                cursor: 'pointer',
+                color: sortType === opt.key ? '#00ff00' : '#8B8A80',
+                fontWeight: sortType === opt.key ? 700 : 400,
+              }}
+            >
+              {opt.label}
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* 포스트 리스트 */}
       <div className="posts-list">
-        {currentPosts.map((post) => (
-          <Link href={`/post/${post.id}`} key={post.id} className="post-link">
-            <article className="post-row">
-              <h1 className="post-title">
-                {post.title}
-                {post.hasComments && <span className="comment-dot" aria-label="댓글 있음">●</span>}</h1>
-              <img src={post.imgUrl} alt="" className="post-preview-img" />
-              <div className="post-meta">
-                <span className="date">{post.date}</span>
-                <span className="category">{post.category}</span>
-              </div>
-            </article>
-          </Link>
-        ))}
+        {currentPosts.map((post, idx) => {
+          const prevPost = idx === 0 ? sortedPosts[indexOfFirstPost - 1] : currentPosts[idx - 1];
+          const isNewSeriesGroup = post.series && post.series !== prevPost?.series;
+          const isContinuing = isNewSeriesGroup && idx === 0 && post.series === prevPost?.series;
+          const seriesTotal = post.series
+            ? posts.filter(p => p.series === post.series).length
+            : 0;
+
+          return (
+            <div key={post.id}>
+              {isNewSeriesGroup && (
+                <div style={{ fontSize: '13px', color: '#0000ff', fontWeight: 700, marginTop: '22px', marginBottom: '4px' }}>
+                  {post.series} · {isContinuing ? '이어서' : `${seriesTotal}편`}
+                </div>
+              )}
+              <Link href={`/post/${post.id}`} className="post-link">
+                <article className="post-row">
+                  <h1 className="post-title">
+                    {post.title}
+                    {post.hasComments && <span className="comment-dot" aria-label="댓글 있음">●</span>}
+                  </h1>
+                  <img src={post.imgUrl} alt="" className="post-preview-img" />
+                  <div className="post-meta">
+                    <span className="date">{post.date}</span>
+                    <span className="category">{post.category}</span>
+                  </div>
+                </article>
+              </Link>
+            </div>
+          );
+        })}
       </div>
 
       {/* 페이지네이션 */}
