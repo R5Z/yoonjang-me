@@ -2,10 +2,10 @@
 title: "감정 인식 고도화 - 감정 일기 작업기 2"
 date: "2026. 04. 08"
 tags: "dev, lexicon, app, project, emotion-journal, MVP"
-series: "감정일기-작업기"
-seriesOrder: "3"
 slug: "emo-journal-worklog-2"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260408_post0.png"
+series: "감정일기-작업기"
+seriesOrder: "3"
 ---
 
 <br>
