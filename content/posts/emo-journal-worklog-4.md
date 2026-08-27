@@ -2,10 +2,10 @@
 title: "웹앱 배포 - 감정 일기 작업기 4"
 date: "2026. 06. 18"
 tags: "dev, pwa, app"
-series: "감정일기-작업기"
-seriesOrder: "5"
 slug: "emo-journal-worklog-4"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/og.png"
+series: "감정일기-작업기"
+seriesOrder: "5"
 ---
 <br/>
 목표한 MVP까지는 만들어 놓은 지 한참이었는데, 출시가 묘연해져서 PWA으로 전환하여 소개라도 할까 싶어 추가로 작업했다. 앱 버전과 룩이 완전히 같지는 않지만, 핵심 기능은 다 옮겼고 동작도 잘 되긴 해요...  
