@@ -4,6 +4,8 @@ date: "2026. 06. 24"
 tags: "dev, nextjs, vite, framework"
 slug: "vite-to-nextjs"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_1400.JPG"
+series: ""
+seriesOrder: ""
 ---
 <br/>
 아무 티도 안 나겠지만 사이트를 vite에서 next.js로 이전했다. 티가 안 나야 성공이긴 해…  
