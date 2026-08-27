@@ -4,6 +4,8 @@ date: "2026. 03. 03"
 tags: "blog"
 slug: "office-moved"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260303_post0.png"
+series: ""
+seriesOrder: ""
 ---
 
 <img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260303_post0.png" width="500" />
