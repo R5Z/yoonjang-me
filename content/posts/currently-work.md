@@ -4,6 +4,8 @@ date: "2026. 02. 05"
 tags: "blog, studio"
 slug: "currently-work"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/0205blog5.png"
+series: ""
+seriesOrder: ""
 ---
 
 
