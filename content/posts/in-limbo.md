@@ -4,6 +4,8 @@ date: "2026. 03. 18"
 tags: "blog, limbo, journal"
 slug: "in-limbo"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260318_post0.png"
+series: ""
+seriesOrder: ""
 ---
 
 <br>
