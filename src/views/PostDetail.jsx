@@ -49,24 +49,7 @@ const PostDetail = ({ post, prevPost, nextPost, hasEnglish = false, isEnglish = 
         {post.imgUrl && <meta property="og:image" content={post.imgUrl} />}
       </Head>
 
-      {(isEnglish || hasEnglish) && (
-        <div style={{ marginBottom: '16px', fontSize: '13px', fontStyle: 'italic', color: '#8B8A80' }}>
-          {isEnglish ? (
-            <>
-              Auto-translated from Korean ·{' '}
-              <Link href={`/post/${post.id}`} style={{ color: '#8B8A80', textDecoration: 'underline' }}>
-                한국어로 보기
-              </Link>
-            </>
-          ) : (
-            <Link href={`/en/post/${post.id}`} style={{ color: '#8B8A80', textDecoration: 'underline' }}>
-              Read in English →
-            </Link>
-          )}
-        </div>
-      )}
-
-      <div className="post-meta" style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginBottom: '20px' }}>
+      <div className="post-meta" style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginBottom: '20px', marginLeft: 0 }}>
         <span className="date">
           {post.date}
           <span style={{ marginLeft: '10px' }}>Views {stats.views}</span>
@@ -74,11 +57,28 @@ const PostDetail = ({ post, prevPost, nextPost, hasEnglish = false, isEnglish = 
             <span style={{ fontSize: '0.8rem' }}>· ♥ </span>Likes {stats.likes}
           </span>
         </span>
+
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {post.tags && post.tags.map((tag, i) => (
             <span key={i} className="category">{tag}</span>
           ))}
         </div>
+        {(isEnglish || hasEnglish) && (
+          <span className="date">
+            {isEnglish ? (
+              <>
+                Auto-translated ·{' '}
+                <Link href={`/post/${post.id}`} style={{ textDecoration: 'underline' }}>
+                  한국어로 보기
+                </Link>
+              </>
+            ) : (
+              <Link href={`/en/post/${post.id}`} style={{ textDecoration: 'underline' }}>
+                Read in English →
+              </Link>
+            )}
+          </span>
+        )}
       </div>
 
       <h1 className="page-title" style={{ marginBottom: '60px' }}>{post.title}</h1>
