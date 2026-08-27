@@ -1,13 +1,13 @@
 ---
-                        title: "계획 아래 지나가 버린 여름"
-                        date: "2026. 08. 27"
-                        tags: "blog, wip, daily"
-                        slug: "through-summer"
-                        imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_6079.JPG"
-                        series: ""
-                        seriesOrder: ""
-                        ---
-                        <br>
+title: "계획 아래 지나가 버린 여름"
+date: "2026. 08. 27"
+tags: "blog, wip, daily"
+slug: "through-summer"
+imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_6079.JPG"
+series: ""
+seriesOrder: ""
+---
+<br>
 스프레드시트에 할 일 나열해 놓고 하나하나 쭉쭉 지워가며 여름을 보냈다.<br>
 머릿속으로 그려 본 휴가는 수십 개 막상 나선 것은 하나도<br>
 절기 하나씩 지날 때마다 바다는 얼마나 더 차가워질까 같이 그려 보기도 했다.<br>
