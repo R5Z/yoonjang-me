@@ -4,6 +4,8 @@ date: "2026. 04. 23"
 tags: "blog"
 slug: "sulking-at-life"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260423_post0.jpg"
+series: ""
+seriesOrder: ""
 ---
 
 <br>
