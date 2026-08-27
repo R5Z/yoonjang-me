@@ -4,6 +4,8 @@ date: "2026. 05. 14"
 tags: "blog"
 slug: "useless-trip"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260514_post0.JPG"
+series: ""
+seriesOrder: ""
 ---
 
 <br>
