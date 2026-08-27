@@ -4,6 +4,8 @@ date: "2026. 07. 20"
 tags: "blog, wip"
 slug: "process"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_5758.JPG"
+series: ""
+seriesOrder: ""
 ---
 <br/>
 잠깐씩 에러 난 곳은 없나 블로그를 켜보기는 했다. 메일도 작업 시트도 확인하긴 했지만, 노트를 켜고 앉은 것은 정말 오랜만이다.<br/>
