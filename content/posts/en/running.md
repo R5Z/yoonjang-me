@@ -1,0 +1,11 @@
+---
+title: "“The cure for anything is salt water. Sweat, tears or the ocean.”"
+date: "2026. 04. 07"
+tags: "blog, journal, running"
+slug: "running"
+imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/04071.jpeg"
+series: ""
+seriesOrder: ""
+---
+
+— Isak Dinesen // Karen Blixen<br><br> I completed a half marathon. My partner once claimed my spot, so I trained for about a month, still not understanding why people need to run over 20 kilometers, and eventually finished. The joy of finally being over, felt when crossing the finish line, was sweeter and better than any feeling I&#39;ve experienced recently. I even resolved not to participate in marathons for a while, but just as my throbbing hips and knees feel fine in a few days, I might forget everything and find myself registering for another marathon. I have been enjoying running for quite a long time. According to my NRC app records, I need just 2 more kilometers to reach a cumulative total of 1,000 km. Since the Adidas Runbase Namsan disappeared sometime in 2017, I have been running happily for over 10 years. Is running still in fashion? Anyway, it is nice that running shoe designs have become more visually appealing, there are many pretty workout clothes available, and useful exercise tips are easily accessible. My partner, who always studies hard first no matter what they do, is the first to ask for good tips, and is also the first to bring me nice running shoes and pretty workout clothes. Thanks to them, I run beautifully every day. And I never thought you would come to love running this much. Honestly, my greatest happiness lately is running with my partner. Running along the Han River, Namsan, through the city center heading for famous restaurants, and to travel destinations, we talk a lot and cheer each other on. And the best part is that after sweating like that, I feel refreshed with no lingering resentment. Hey man... I understand everything, running 21 kilometers in two hours... I&#39;m looking forward to Jeju Island this summer. I wonder how much healing would come from running toward the sea and jumping right in. <br><br><img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/04072.JPG" width="500" /><br><img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/04073.jpeg" width="500" />
