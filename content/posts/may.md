@@ -4,6 +4,8 @@ date: "2026. 05. 18"
 tags: "blog, birth-month"
 slug: "may"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/05187.JPG"
+series: ""
+seriesOrder: ""
 ---
 
 <br>
