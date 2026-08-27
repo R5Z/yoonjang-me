@@ -4,6 +4,8 @@ date: "2026. 02. 22"
 tags: "dev, git"
 slug: "post-by-mobile"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260222_post0.png"
+series: ""
+seriesOrder: ""
 ---
 
 
