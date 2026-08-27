@@ -193,15 +193,15 @@ export default function Admin() {
 
     const filename = `${fm.slug}.md`;
     const frontmatter = `---
-                        title: "${fm.title}"
-                        date: "${fm.date}"
-                        tags: "${fm.tags}"
-                        slug: "${fm.slug}"
-                        imgUrl: "${fm.imgUrl}"
-                        series: "${fm.series}"
-                        seriesOrder: "${fm.seriesOrder}"
-                        ---
-                        `;
+title: "${fm.title}"
+date: "${fm.date}"
+tags: "${fm.tags}"
+slug: "${fm.slug}"
+imgUrl: "${fm.imgUrl}"
+series: "${fm.series}"
+seriesOrder: "${fm.seriesOrder}"
+---
+`;
     const content = frontmatter + body;
 
     showStatus('저장 중...');
