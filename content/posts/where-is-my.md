@@ -4,6 +4,8 @@ date: "2026. 05. 03"
 tags: "blog, jobless"
 slug: "where-is-my"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260503_post0.JPG"
+series: ""
+seriesOrder: ""
 ---
 
 <br>
