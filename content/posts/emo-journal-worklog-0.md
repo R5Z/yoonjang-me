@@ -2,10 +2,10 @@
 title: "타임라인 형식 감정 일기 작업기 0"
 date: "2026. 01. 29"
 tags: "dev, react-native, expo, app, project"
-series: "감정일기-작업기"
-seriesOrder: "1"
 slug: "emo-journal-worklog-0"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/appSketch4.png"
+series: "감정일기-작업기"
+seriesOrder: "1"
 ---
 
 
