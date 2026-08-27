@@ -4,6 +4,8 @@ date: "2026. 05. 06"
 tags: "blog, likes"
 slug: "pressed-likes"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260506_post0.png"
+series: ""
+seriesOrder: ""
 ---
 
 <br>
