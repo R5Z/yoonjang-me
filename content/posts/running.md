@@ -4,6 +4,8 @@ date: "2026. 04. 07"
 tags: "blog, journal, running"
 slug: "running"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/04071.jpeg"
+series: ""
+seriesOrder: ""
 ---
 
 —  Isak Dinesen // Karen Blixen  
