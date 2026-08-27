@@ -2,10 +2,10 @@
 title: "QA 목록을 짜놓고 - 감정 일기 작업기 3"
 date: "2026. 05. 13"
 tags: "dev, app, project, QA"
-series: "감정일기-작업기"
-seriesOrder: "4"
 slug: "emo-journal-worklog-3"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260513_post1.JPG"
+series: "감정일기-작업기"
+seriesOrder: "4"
 ---
 
 <br>
