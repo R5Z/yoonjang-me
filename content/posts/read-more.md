@@ -4,6 +4,8 @@ date: "2026. 01. 24"
 tags: "blog"
 slug: "read-more"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260124_post0.jpeg"
+series: ""
+seriesOrder: ""
 ---
 
 
