@@ -4,6 +4,8 @@ date: "2026. 03. 31"
 tags: "blog, journal"
 slug: "recent-mood"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/260331_post0.jpeg"
+series: ""
+seriesOrder: ""
 ---
 
 <br>
