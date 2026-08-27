@@ -7,7 +7,8 @@ import remarkGfm from 'remark-gfm';
 import Comments from '../components/Comments';
 import { supabase } from '../supabaseClient';
 
-const PostDetail = ({ post, prevPost, nextPost }) => {
+const PostDetail = ({ post, prevPost, nextPost, hasEnglish = false, isEnglish = false }) => {
+
   const [stats, setStats] = useState({ views: 0, likes: 0 });
 
   useEffect(() => {
@@ -47,6 +48,23 @@ const PostDetail = ({ post, prevPost, nextPost }) => {
         <meta property="og:description" content={description} />
         {post.imgUrl && <meta property="og:image" content={post.imgUrl} />}
       </Head>
+
+      {(isEnglish || hasEnglish) && (
+        <div style={{ marginBottom: '16px', fontSize: '13px', fontStyle: 'italic', color: '#8B8A80' }}>
+          {isEnglish ? (
+            <>
+              Auto-translated from Korean ·{' '}
+              <Link href={`/post/${post.id}`} style={{ color: '#8B8A80', textDecoration: 'underline' }}>
+                한국어로 보기
+              </Link>
+            </>
+          ) : (
+            <Link href={`/en/post/${post.id}`} style={{ color: '#8B8A80', textDecoration: 'underline' }}>
+              Read in English →
+            </Link>
+          )}
+        </div>
+      )}
 
       <div className="post-meta" style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginBottom: '20px' }}>
         <span className="date">

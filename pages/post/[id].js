@@ -1,5 +1,5 @@
 import PostDetail from '../../src/views/PostDetail';
-import { getAllPosts, getPostById } from '../../lib/posts';
+import { getAllPosts, getPostById, hasEnglishVersion } from '../../lib/posts';
 
 export default function PostPage(props) { return <PostDetail {...props} />; }
 
@@ -12,5 +12,5 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const data = getPostById(params.id);
   if (!data) return { notFound: true };
-  return { props: data };
+  return { props: { ...data, hasEnglish: hasEnglishVersion(params.id) } };
 }

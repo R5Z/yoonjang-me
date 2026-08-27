@@ -216,24 +216,61 @@ export default function Admin() {
         return showStatus('저장 실패: ' + err.error, 'error');
       }
 
-      // 슬러그 변경 시 기존 파일 삭제
-      if (originalSlug && originalSlug !== fm.slug) {
-        const oldFilename = `${originalSlug}.md`;
-        await fetch('/api/github-delete', {
+    showStatus('영문 번역 중...');
+    try {
+      const [titleRes, bodyRes] = await Promise.all([
+        fetch('/api/translate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ filename: oldFilename }),
-        });
-        showStatus(`저장 완료 (${oldFilename} → ${filename})`, 'success');
-      } else {
-        showStatus('저장 완료!', 'success');
-      }
-      setOriginalSlug(fm.slug);
-      loadPosts();
-    } catch (err) {
-      showStatus('저장 실패: ' + err.message, 'error');
+          body: JSON.stringify({ text: fm.title, target: 'en' }),
+        }).then(r => r.json()),
+        fetch('/api/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: body, target: 'en' }),
+        }).then(r => r.json()),
+      ]);
+
+      const enFrontmatter = `---
+title: "${titleRes.translated || fm.title}"
+date: "${fm.date}"
+tags: "${fm.tags}"
+slug: "${fm.slug}"
+imgUrl: "${fm.imgUrl}"
+series: "${fm.series}"
+seriesOrder: "${fm.seriesOrder}"
+---
+`;
+      await fetch('/api/github-commit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          filename: `en/${fm.slug}.md`,
+          content: enFrontmatter + (bodyRes.translated || body),
+        }),
+      });
+    } catch (translateErr) {
+      console.error('영문 버전 생성 실패:', translateErr);
+      // 번역 실패해도 한글 글 저장은 이미 됐으니 에러로 안 막음
     }
+
+    if (originalSlug && originalSlug !== fm.slug) {
+      const oldFilename = `${originalSlug}.md`;
+      await fetch('/api/github-delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename: oldFilename }),
+      });
+      showStatus(`저장 완료 (${oldFilename} → ${filename})`, 'success');
+    } else {
+      showStatus('저장 완료! (영문 버전 포함)', 'success');
+    }
+    setOriginalSlug(fm.slug);
+    loadPosts();
+  } catch (err) {
+    showStatus('저장 실패: ' + err.message, 'error');
   }
+}
 
   if (!authed) {
     return (
