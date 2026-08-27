@@ -1,0 +1,10 @@
+---
+title: "Unemployed or freelancer or (blinking cursor)"
+date: "2026. 05. 27"
+tags: "blog"
+slug: "freelancing"
+imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_5408.JPG"
+series: ""
+seriesOrder: ""
+---
+It has been six years since I started living in this house, yet sometimes when I wake up and step into the living room, I still wonder if this is really where I belong. I get that same feeling sometimes when I go on a date with my partner, return home, fall asleep together, and wake up. I thought I was moving in the way I thought and wanted, but was that actually not the case? I tried so hard to feel grounded, but is it still not working out? It has been quite a while since I started making time for work and living a regular life—at least I don&#39;t get invited anywhere—so why does everything feel so unfamiliar and empty? It has been about six months since I switched to this medication, so is it because my honeymoon is coming to an end? Amidst all this, the doctor only prescribed the evening medication today, so I just picked that up. &quot;Actually, I don&#39;t know what to do.&quot; More precisely, I said, &quot;Before, I thought the problem was that I didn&#39;t have work, but now I&#39;m doing this and that, yet I honestly don&#39;t know what I should be doing or what is right.&quot; &quot;But you have been going out lately?&quot; &quot;Yes.&quot; &quot;Still, you&#39;ve improved a lot.&quot; And so, just the evening medication was prescribed. The doctor wasn&#39;t wrong, nor is it anything serious; there are weeks when I am so busy that I need a day to do absolutely nothing at home. Nevertheless, something still feels deeply inconsistent. Now that I’m even attaching a name that isn&#39;t particularly significant to it, there are things I hesitate to talk about again. So, the things I end up repeating. It feels so much like my own deficiency, even though it’s not that it isn&#39;t. Today is the same. As always, I just want to be a little lighthearted and funny. <br/><img src="https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_5408.JPG" width="500" /><br/>
