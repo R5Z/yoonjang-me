@@ -1,4 +1,5 @@
 import Guestbook from '../components/Guestbook';
+import Blogroll from '../components/Blogroll';
 
 export default function About() {
   return (
@@ -13,6 +14,9 @@ export default function About() {
         </a>
         <p>재밌는 일 있으면 좀 알려주세요. 재미없어도 ↓ Tell me if something fun or silly comes up.</p>
       </div>
+
+      {/* Blogroll */}
+      <Blogroll />
 
       {/* Guestbook */}
       <Guestbook />
