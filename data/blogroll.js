@@ -2,7 +2,7 @@ export const blogroll = [
   {
     name: 'beatbird',
     url: 'https://beatbird.kim',
-    desc: '자기소개 써 드립니다 제출하세요',
+    desc: 'Ongaku daisuki ojisan, Runner, Husband',
   },
   {
     name: 'joykim',
@@ -12,6 +12,11 @@ export const blogroll = [
   {
     name: 'endnotes',
     url: 'http://end-and.com',
+    desc: '자기소개 써 드립니다 제출하세요',
+  },
+  {
+    name: 'Soma Kim / Arexibo',
+    url: 'https://xxomakim.info/',
     desc: '자기소개 써 드립니다 제출하세요',
   },
 ];
