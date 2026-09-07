@@ -4,8 +4,8 @@ date: "2026. 08. 05"
 tags: "running, blog"
 slug: "runrun"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_3513.jpeg"
-series: ""
-seriesOrder: ""
+series: "안울고달리기"
+seriesOrder: "2"
 ---
 <br/>
 그런 게 있나 싶긴 하지만<br/>
