@@ -1,7 +1,5 @@
-import { blogroll } from '/data/blogroll';
-
-export default function Blogroll() {
-  if (!blogroll.length) return null;
+export default function Blogroll({ sites = [] }) {
+  if (!sites.length) return null;
 
   return (
     <div style={{ marginTop: '40px', maxWidth: '600px' }}>
@@ -9,7 +7,7 @@ export default function Blogroll() {
         Blogroll
       </h2>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {blogroll.map((site) => (
+        {sites.map((site) => (
           <a
             key={site.url}
             href={site.url}
@@ -32,6 +30,14 @@ export default function Blogroll() {
                 </span>
               )}
             </span>
+            {site.lastUpdated && (
+              <span style={{
+                fontSize: '12px', color: '#8B8A80', fontStyle: 'italic',
+                fontFamily: "Georgia, 'PT Serif', serif", whiteSpace: 'nowrap',
+              }}>
+                최근 {site.lastUpdated}
+              </span>
+            )}
           </a>
         ))}
       </div>

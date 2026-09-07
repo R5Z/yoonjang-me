@@ -1,7 +1,7 @@
 import Guestbook from '../components/Guestbook';
 import Blogroll from '../components/Blogroll';
 
-export default function About() {
+export default function About({ blogrollSites }) {
   return (
     <div className="container">
       <h1 className="page-title">Jangmi Yoon</h1>
@@ -16,7 +16,7 @@ export default function About() {
       </div>
 
       {/* Blogroll */}
-      <Blogroll />
+      <Blogroll sites={blogrollSites} />
 
       {/* Guestbook */}
       <Guestbook />
