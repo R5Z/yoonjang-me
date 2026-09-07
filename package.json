@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "sitemap": "node scripts/generate-sitemap.js",
+    "rss": "node scripts/generate-rss.js",
     "prebuild": "npm run sitemap",
     "build": "next build",
     "start": "next start",

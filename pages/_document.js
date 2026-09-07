@@ -6,6 +6,7 @@ export default function Document() {
       <Head>
         <meta name="google-site-verification" content="d7ffzCOOp8Ht5X9AL5Bk8ZmcsltYnsn7GV49gayohPk" />
         <link rel="icon" type="image/x-icon" href="/fav.ico" />
+        <link rel="alternate" type="application/rss+xml" title="yoonjang.me" href="https://yoonjang.me/rss.xml" />
       </Head>
       <body>
         <Main />
