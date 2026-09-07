@@ -7,16 +7,16 @@ export const blogroll = [
   {
     name: 'joykim',
     url: 'https://joykim.site',
-    desc: '자기소개 써 드립니다 제출하세요',
+    desc: '',
   },
   {
     name: 'endnotes',
     url: 'http://end-and.com',
-    desc: '자기소개 써 드립니다 제출하세요',
+    desc: '',
   },
   {
     name: 'Soma Kim / Arexibo',
     url: 'https://xxomakim.info/',
-    desc: '자기소개 써 드립니다 제출하세요',
+    desc: ''
   },
 ];
