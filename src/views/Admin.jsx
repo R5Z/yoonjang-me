@@ -50,6 +50,8 @@ export default function Admin() {
   const [statusType, setStatusType] = useState('');
   const [posts, setPosts] = useState([]);
   const [originalSlug, setOriginalSlug] = useState(''); // 슬러그 변경 감지용
+  const [originalBody, setOriginalBody] = useState('');   // 추가 — 번역 재사용 여부 판단용
+  const [originalTitle, setOriginalTitle] = useState(''); // 추가
   const textareaRef = useRef(null);
 
   function showStatus(msg, type = '') {
@@ -87,6 +89,8 @@ export default function Admin() {
       setFm(loadedFm);
       setBody(loadedBody);
       setOriginalSlug(loadedFm.slug);
+      setOriginalBody(loadedBody);
+      setOriginalTitle(loadedFm.title);
       showStatus(`불러옴: ${filename}`, 'success');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
@@ -118,6 +122,8 @@ export default function Admin() {
     setFm({ ...defaultFrontmatter, date: formatDate() });
     setBody('');
     setOriginalSlug('');
+    setOriginalBody('');
+    setOriginalTitle('');
     showStatus('새 글 작성 모드', '');
   }
 
@@ -146,30 +152,30 @@ export default function Admin() {
   }
 
   async function handleBodyImageUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-  showStatus('이미지 업로드 중...');
-  try {
-    const blob = await upload(file.name, file, {
-      access: 'public',
-      handleUploadUrl: '/api/blob-upload',
-    });
+    showStatus('이미지 업로드 중...');
+    try {
+      const blob = await upload(file.name, file, {
+        access: 'public',
+        handleUploadUrl: '/api/blob-upload',
+      });
 
-    const textarea = textareaRef.current;
-    const start = textarea.selectionStart;
-    const before = body.slice(0, start);
-    const after = body.slice(start);
-    const tag = `<img src="${blob.url}" width="500" />`;
-    setBody(before + tag + after);
-    showStatus('이미지 업로드 완료', 'success');
-  } catch (err) {
-    showStatus('이미지 업로드 실패: ' + err.message, 'error');
+      const textarea = textareaRef.current;
+      const start = textarea.selectionStart;
+      const before = body.slice(0, start);
+      const after = body.slice(start);
+      const tag = `<img src="${blob.url}" width="500" />`;
+      setBody(before + tag + after);
+      showStatus('이미지 업로드 완료', 'success');
+    } catch (err) {
+      showStatus('이미지 업로드 실패: ' + err.message, 'error');
+    }
+
+    // 같은 파일 재선택 가능하도록 초기화
+    e.target.value = '';
   }
-
-  // 같은 파일 재선택 가능하도록 초기화
-  e.target.value = '';
-}
 
   async function handleImgUrlUpload(e) {
     const file = e.target.files[0];
@@ -216,22 +222,26 @@ seriesOrder: "${fm.seriesOrder}"
         return showStatus('저장 실패: ' + err.error, 'error');
       }
 
-    showStatus('영문 번역 중...');
-    try {
-      const [titleRes, bodyRes] = await Promise.all([
-        fetch('/api/translate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: fm.title, target: 'en' }),
-        }).then(r => r.json()),
-        fetch('/api/translate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: body, target: 'en' }),
-        }).then(r => r.json()),
-      ]);
+      // ↓ 추가 — title/body가 실제로 바뀌었을 때만 재번역
+      const contentChanged = body !== originalBody || fm.title !== originalTitle;
 
-      const enFrontmatter = `---
+      if (contentChanged) {
+        showStatus('영문 번역 중...');
+        try {
+          const [titleRes, bodyRes] = await Promise.all([
+            fetch('/api/translate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ text: fm.title, target: 'en' }),
+            }).then(r => r.json()),
+            fetch('/api/translate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ text: body, target: 'en' }),
+            }).then(r => r.json()),
+          ]);
+
+          const enFrontmatter = `---
 title: "${titleRes.translated || fm.title}"
 date: "${fm.date}"
 tags: "${fm.tags}"
@@ -241,36 +251,45 @@ series: "${fm.series}"
 seriesOrder: "${fm.seriesOrder}"
 ---
 `;
-      await fetch('/api/github-commit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          filename: `en/${fm.slug}.md`,
-          content: enFrontmatter + (bodyRes.translated || body),
-        }),
-      });
-    } catch (translateErr) {
-      console.error('영문 버전 생성 실패:', translateErr);
-      // 번역 실패해도 한글 글 저장은 이미 됐으니 에러로 안 막음
-    }
+          await fetch('/api/github-commit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              filename: `en/${fm.slug}.md`,
+              content: enFrontmatter + (bodyRes.translated || body),
+            }),
+          });
+        } catch (translateErr) {
+          console.error('영문 버전 생성 실패:', translateErr);
+          // 번역 실패해도 한글 글 저장은 이미 됐으니 에러로 안 막음
+        }
+      } else {
+        console.log('제목/본문 변경 없음 — 번역 건너뜀');
+      }
+      
 
-    if (originalSlug && originalSlug !== fm.slug) {
-      const oldFilename = `${originalSlug}.md`;
-      await fetch('/api/github-delete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename: oldFilename }),
-      });
-      showStatus(`저장 완료 (${oldFilename} → ${filename})`, 'success');
-    } else {
-      showStatus('저장 완료! (영문 버전 포함)', 'success');
+      if (originalSlug && originalSlug !== fm.slug) {
+        const oldFilename = `${originalSlug}.md`;
+        await fetch('/api/github-delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ filename: oldFilename }),
+        });
+        showStatus(`저장 완료 (${oldFilename} → ${filename})`, 'success');
+      } else {
+        showStatus(contentChanged ? '저장 완료! (영문 버전 갱신)' : '저장 완료! (번역 건너뜀)', 'success');
+      }
+
+      // ↓ 추가 — 저장 후 원본 갱신 (연속 저장 대비)
+      setOriginalBody(body);
+      setOriginalTitle(fm.title);
+
+      setOriginalSlug(fm.slug);
+      loadPosts();
+    } catch (err) {
+      showStatus('저장 실패: ' + err.message, 'error');
     }
-    setOriginalSlug(fm.slug);
-    loadPosts();
-  } catch (err) {
-    showStatus('저장 실패: ' + err.message, 'error');
   }
-}
 
   if (!authed) {
     return (
@@ -321,7 +340,7 @@ seriesOrder: "${fm.seriesOrder}"
             + New Post
           </button>
 
-          {['title', 'date', 'tags','series', 'seriesOrder', 'slug'].map((key) => (
+          {['title', 'date', 'tags', 'series', 'seriesOrder', 'slug'].map((key) => (
             <div className="form-group" key={key}>
               <label htmlFor={key}>{key}</label>
               <input
