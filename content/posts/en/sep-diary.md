@@ -1,0 +1,10 @@
+---
+title: "Like getting well-prepared and lying in bed reading a book"
+date: "2026. 09. 29"
+tags: "blog, diary"
+slug: "sep-diary"
+imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_6194.JPG"
+series: ""
+seriesOrder: ""
+---
+<br><br>With a lot of work finished, I tried to generally stay in this state. I haven&#39;t even gone near the library yet, only intending to borrow the books I noted down to read after work, but that&#39;s okay. Shall we imagine together? Today&#39;s work is done, and I&#39;ll think about tomorrow&#39;s tomorrow. I took a shower, put on my pajamas, lay in bed, and finished my daily stretching briefly. I could open a book that I don&#39;t mind falling asleep reading, or, of course, leave it by my bedside without even opening it, and fall asleep while watching Big-mouth&#39;s Mala Tang mukbang for the dozens of times.<br> Even so, I have absolutely no idea why I feel this way, and I think too often, &quot;Is it okay to live like this...?&quot; but that is more like just something that pops into my head.<br> Still, I am no longer afraid of facing a double-digit month. I am glad that I feel no particular sentiment about the year having passed by like this.<br><br> In September, I followed my partner, who was preparing for a full marathon, and slightly increased my running mileage. If I run again later, it will probably be 90km; I might get a bit greedy and reach 100km by tomorrow. My partner and I have been talking a lot about circulation lately. It’s nothing special—we talk almost every day about things like, &quot;I’m tired again today,&quot; or &quot;I really need good circulation.&quot; Naturally, we planned to run even while traveling, so we started by searching for running courses at our destination. What do you think?<br><br> If meeting people, parting ways, going from here to there—if that’s all there is to it—then you have no choice but to tie one of your shoelaces long and be excited.<br><br><br>
