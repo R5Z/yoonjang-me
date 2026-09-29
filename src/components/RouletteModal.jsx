@@ -314,8 +314,10 @@ const styles = `
 .rlt-backdrop{
   position:fixed;inset:0;z-index:1000;
   background:rgba(26,26,26,0.45);
-  display:flex;align-items:center;justify-content:center;
+  display:flex;align-items:flex-start;justify-content:center;
   padding:16px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   font-family:'helvetica neue',helvetica,arial,sans-serif;
   -webkit-tap-highlight-color:transparent;
 }
@@ -323,8 +325,9 @@ const styles = `
   background:${C.bg};
   border:1.5px solid ${C.dark};
   width:100%;max-width:400px;
-  max-height:calc(100vh - 32px);
-  overflow-y:auto;
+  margin:16px auto;
+  overflow-y:visible;
+  -webkit-overflow-scrolling:touch;
 }
 .rlt-header{
   border-bottom:1.5px solid ${C.dark};
