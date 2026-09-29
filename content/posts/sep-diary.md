@@ -2,7 +2,7 @@
 title: "잘 준비를 하고 침대에 누워 책을 읽는 것처럼"
 date: "2026. 09. 29"
 tags: "blog, diary"
-slug: "blog-update"
+slug: "sep-diary"
 imgUrl: "https://p4azsceyqhpy2nnp.public.blob.vercel-storage.com/IMG_6194.JPG"
 series: ""
 seriesOrder: ""
